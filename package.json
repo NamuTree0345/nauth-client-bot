@@ -1,0 +1,12 @@
+{
+  "name": "nauth-client-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.3",
+    "qs": "^6.10.1",
+    "querystring": "^0.2.1"
+  }
+}
