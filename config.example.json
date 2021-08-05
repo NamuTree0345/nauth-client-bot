@@ -1,4 +1,6 @@
 {
     "token": "Bot token",
-    "clientsDir": "clients.json directory"
+    "clientsDir": "clients.json directory",
+    "nauthClientId": "Nauth Client ID",
+    "nauthClientSecret": "Nauth Client Secret"
 }

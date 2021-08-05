@@ -40,8 +40,8 @@ client.on('message', (msg) => {
     if(inputingCodeMap.get(msg.member.id)) {
         msg.delete()
         axios.post('https://nauth.namutree0345.xyz/token', qs.stringify({
-            client_id: '274563',
-            client_secret: 'g4P1jjab3WS3Dvabla8m6N3hGn5v2xSOVVFLkAopWm7q1ssSThbA4LF3ZTnt',
+            client_id: config.nauthClientId,
+            client_secret: config.nauthClientSecret,
             code: msg.content
         }), {
             headers: {
@@ -50,7 +50,7 @@ client.on('message', (msg) => {
         }).then((val) => {
             console.log('1')
             const token = val.data.token
-            axios.get('https://nauth.namutree0345.xyz/authenticate?client_id=274563&client_secret=g4P1jjab3WS3Dvabla8m6N3hGn5v2xSOVVFLkAopWm7q1ssSThbA4LF3ZTnt', {
+            axios.get('https://nauth.namutree0345.xyz/authenticate?client_id=' + config.nauthClientId + '&client_secret=' + config.nauthClientSecret, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
