@@ -110,6 +110,27 @@ client.on('message', (msg) => {
             inputingCodeMap.set(msg.member.id, msg.channel.id)
             msg.channel.send(embed)
         }
+    } else if(msg.content.startsWith('!리다이렉트')) {
+        let args = msg.content.split(' ')
+        if(args.length >= 2) {
+            fs.readFile(`./data/${msg.member.id}.json`, {encoding: 'utf-8'}, (err, data) => {
+                if(err) return console.error(err)
+                fs.readFile(config.clientsDir, {encoding: 'utf-8'}, (err2, data2) => {
+                    if(err2) return console.error(err2)
+                    
+                    const c = JSON.parse(data2)
+                    const c2 = JSON.parse(data)
+
+                    const cl = c.findIndex((ca) => ca.name === c2.clients[args[1] - 1])
+                    if(c2.clients[args[1] - 1] && cl) {
+                        c[cl].selectedRedirectUri = args[2]
+                        fs.writeFile(config.clientsDir, JSON.stringify(c), (err) => {})
+                    }
+                })
+            })
+        } else {
+            msg.channel.send(':x: 사용법: !리다이렉트 <클라이언트 숫자(!계정 명령어로 확인)> <리다이렉트 URI>')
+        }
     } else if(msg.content.startsWith('!등록')) {
         let args = msg.content.split(' ')
         if(args.length >= 1) {
