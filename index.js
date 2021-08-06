@@ -124,7 +124,9 @@ client.on('message', (msg) => {
                     const cl = c.findIndex((ca) => ca.name === c2.clients[args[1] - 1])
                     if(c2.clients[args[1] - 1] && cl) {
                         c[cl].selectedRedirectUri = args[2]
-                        fs.writeFile(config.clientsDir, JSON.stringify(c), (err) => {})
+                        fs.writeFile(config.clientsDir, JSON.stringify(c), (err) => {
+                            msg.channel.send(':white_check_mark: 성공적으로 변경되었습니다!')
+                        })
                     }
                 })
             })
